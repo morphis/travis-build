@@ -1,0 +1,21 @@
+name: travis-build
+version: 1
+summary: Simple utility to generate a bash script from a .travis.yml
+description: |
+  In order to be able to reused portions of existing .travis.yml build
+  scripts on other builders than travis ones this utility takes a minimal
+  .travis.yml and converts it into a bash script which can be executed
+  without further changes on top of a predefined build environment.
+confinement: strict
+grade: stable
+
+apps:
+  travis-build:
+    command: travis-build
+    plugs: [home]
+
+parts:
+  travis-build:
+    plugin: go
+    source: .
+    go-importpath: github.com/morphis/travis-build
